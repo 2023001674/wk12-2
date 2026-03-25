@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>AngularJS Form Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="myController">
+
+    <h2>Student Greeting</h2>
+    <input type="text" ng-model="studentName" placeholder="Enter your name">
+    <h3>Hello, {{ studentName }}!</h3>
+
+    <hr>
+
+    <form name="myForm">
+        <h2>Email Validation</h2>
+
+        <input type="email" name="email" ng-model="email" required>
+
+        <br><br>
+
+        <span style="color:red" ng-show="myForm.email.$error.required">
+            Email is required!
+        </span>
+
+        <span style="color:red" ng-show="myForm.email.$error.email">
+            Invalid email format!
+        </span>
+
+        <br><br>
+
+        <button ng-disabled="myForm.$invalid">Submit</button>
+    </form>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myController", function($scope) {
+            $scope.studentName = "";
+            $scope.email = "";
+        });
+    </script>
+
+</body>
+</html>
